@@ -1,0 +1,19 @@
+{
+  "bindings": [
+    {
+      "name": "message",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "myqueue",
+      "connection": "swseveranceleetcode8378_STORAGE"
+    },
+    {
+      "type": "twilioSms",
+      "name": "twilio",
+      "accountSidSetting": "TwilioAccountSid",
+      "authTokenSetting": "TwilioAuthToken",
+      "from": "+12622281809",
+      "direction": "out"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "bindings": [
+    {
+      "name": "myTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 */30 * * * *"
+    },
+    {
+      "type": "table",
+      "direction": "in",
+      "name": "documents",
+      "tableName": "myleetcodetable",
+      "connection": "swseveranceleetcode8378_STORAGE",
+      "partitionKey": "Leetcode"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "queue",
+      "queueName": "myqueue",
+      "connection": "swseveranceleetcode8378_STORAGE"
+    }
+  ]
+}
