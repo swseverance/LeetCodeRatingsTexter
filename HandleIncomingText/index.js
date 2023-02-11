@@ -1,4 +1,5 @@
 const qs = require("qs");
+const MAX_USERS = process.env["MAX_USERS"];
 const { leetCodeService, tableService, createDocument } = require("../shared");
 
 module.exports = function (context, req) {
@@ -12,6 +13,10 @@ module.exports = function (context, req) {
     .getUser(username.trim())
     .then(({ matchedUser }) => {
       if (matchedUser) {
+        if (context.bindings.documents.length >= MAX_USERS) {
+          return (context.res.body = `Sorry! For now we are limited to ${MAX_USERS} users.`);
+        }
+
         return tableService
           .upsertEntity(
             createDocument(matchedUser.username, phone, false, 0, "")

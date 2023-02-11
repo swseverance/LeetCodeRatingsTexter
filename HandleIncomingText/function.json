@@ -11,6 +11,14 @@
       ]
     },
     {
+      "type": "table",
+      "direction": "in",
+      "name": "documents",
+      "tableName": "myleetcodetable",
+      "connection": "swseveranceleetcode8378_STORAGE",
+      "partitionKey": "Leetcode"
+    },
+    {
       "type": "http",
       "direction": "out",
       "name": "res"
