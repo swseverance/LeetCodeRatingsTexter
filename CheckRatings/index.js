@@ -8,7 +8,7 @@ module.exports = function (context) {
   );
 
   return leetCodeService
-    .getRatings(usernames, context)
+    .getRatings(usernames)
     .then((ratings) => {
       context.bindings.queue = [];
 
