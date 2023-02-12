@@ -15,5 +15,6 @@
       "from": "+12622281809",
       "direction": "out"
     }
-  ]
+  ],
+  "scriptFile": "../dist/HandleQueueMessage/index.js"
 }

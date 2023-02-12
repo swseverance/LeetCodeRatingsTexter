@@ -23,5 +23,6 @@
       "direction": "out",
       "name": "res"
     }
-  ]
+  ],
+  "scriptFile": "../dist/HandleIncomingText/index.js"
 }

@@ -1,11 +1,12 @@
-const axios = require("axios");
-const { chunk } = require("lodash");
+import axios from "axios";
+import { chunk } from "lodash";
+import { RawUserContestRankingInfo, RawUserPublicProfile, UserContestRankingInfo } from "./models";
 
-const GET_RATINGS_BATCH_SIZE = process.env["GET_RATINGS_BATCH_SIZE"];
+const GET_RATINGS_BATCH_SIZE = parseInt(process.env["GET_RATINGS_BATCH_SIZE"]!);
 const GRAPHQL_URL = process.env["GRAPHQL_URL"];
 
-const createQueryForRatings = (usernames) => {
-  const createQueryForUsername = (username) => `
+const createQueryForRatings = (usernames: string[]) => {
+  const createQueryForUsername = (username: string) => `
     ${username}: userContestRanking(username: "${username}") {
       rating
       badge {
@@ -21,7 +22,7 @@ const createQueryForRatings = (usernames) => {
   `;
 };
 
-const createQueryForUserPublicProfile = (username) => `
+const createQueryForUserPublicProfile = (username: string) => `
   query userPublicProfile {
     matchedUser(username: "${username}") {
       username
@@ -30,22 +31,8 @@ const createQueryForUserPublicProfile = (username) => `
 `;
 
 class LeetCodeService {
-  /**
-   * sample response:
-   *
-   * {
-   *   userwithbadge: {
-   *     rating: 1950.4900046430503,
-   *     badge: 'Knight'
-   *   }
-   *   userwithoutbadge: {
-   *     rating: 1631.4324539546762,
-   *     badge: ''
-   *   }
-   * }
-   */
-  async getRatings(usernames) {
-    const ratings = {};
+  async getRatings(usernames: string[]): Promise<UserContestRankingInfo> {
+    const ratings: UserContestRankingInfo = {};
 
     const batches = chunk(usernames, GET_RATINGS_BATCH_SIZE);
 
@@ -61,7 +48,7 @@ class LeetCodeService {
         },
       })
         .then((res) => res.data.data)
-        .then((batchOfRatings) => {
+        .then((batchOfRatings: RawUserContestRankingInfo) => {
           for (const [username, userContestRanking] of Object.entries(
             batchOfRatings
           )) {
@@ -81,22 +68,7 @@ class LeetCodeService {
     return ratings;
   }
 
-  /**
-   * sample response when user exists:
-   *
-   * {
-   *   matchedUser: {
-   *     username: 'swseverance'
-   *   }
-   * }
-   *
-   * sample response when user does not exist:
-   *
-   * {
-   *   matchedUser: null
-   * }
-   */
-  getUser(username) {
+  async getUser(username: string): Promise<RawUserPublicProfile> {
     return axios({
       method: "post",
       url: GRAPHQL_URL,
@@ -110,4 +82,4 @@ class LeetCodeService {
   }
 }
 
-module.exports = new LeetCodeService();
+export const leetCodeService = new LeetCodeService();
