@@ -4,7 +4,7 @@
       "name": "message",
       "type": "queueTrigger",
       "direction": "in",
-      "queueName": "myqueue",
+      "queueName": "%STORAGE_QUEUE_NAME%",
       "connection": "swseveranceleetcode8378_STORAGE"
     },
     {

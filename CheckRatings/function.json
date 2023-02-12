@@ -10,7 +10,7 @@
       "type": "table",
       "direction": "in",
       "name": "documents",
-      "tableName": "myleetcodetable",
+      "tableName": "%STORAGE_TABLE_NAME%",
       "connection": "swseveranceleetcode8378_STORAGE",
       "partitionKey": "Leetcode"
     },
@@ -18,7 +18,7 @@
       "type": "queue",
       "direction": "out",
       "name": "queue",
-      "queueName": "myqueue",
+      "queueName": "%STORAGE_QUEUE_NAME%",
       "connection": "swseveranceleetcode8378_STORAGE"
     }
   ],

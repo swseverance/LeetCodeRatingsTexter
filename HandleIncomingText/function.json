@@ -14,7 +14,7 @@
       "type": "table",
       "direction": "in",
       "name": "documents",
-      "tableName": "myleetcodetable",
+      "tableName": "%STORAGE_TABLE_NAME%",
       "connection": "swseveranceleetcode8378_STORAGE",
       "partitionKey": "Leetcode"
     },
