@@ -10,7 +10,11 @@ const handleQueueMessage: AzureFunction = async (
     .then(() => {
       context.bindings.twilio = createTwilioMessage(document);
     })
-    .catch((e) => context.log.error("Error: ", e));
+    .catch((e) => {
+      context.log.error("Error: ", e);
+
+      throw e;
+    });
 };
 
 export default handleQueueMessage;

@@ -52,7 +52,9 @@ const handleIncomingText: AzureFunction = async (
     .catch((e) => {
       context.log.error("Error: ", e);
 
-      return setRequestBody("An unexpected error has occurred");
+      setRequestBody("An unexpected error has occurred");
+
+      throw e;
     });
 };
 
