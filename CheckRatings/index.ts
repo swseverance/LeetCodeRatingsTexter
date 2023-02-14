@@ -35,7 +35,11 @@ const checkRatings: AzureFunction = async (context: Context) => {
 
       context.bindings.queue = queue;
     })
-    .catch((e) => context.log.error("Error: ", e));
+    .catch((e) => {
+      context.log.error("Error: ", e);
+
+      throw e;
+    });
 };
 
 export default checkRatings;
