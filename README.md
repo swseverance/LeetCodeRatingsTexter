@@ -1,3 +1,7 @@
+## Update
+
+LeetCode has changed their API so that it is not publicly accessible like it once was. Unfortunately LeetCodeRatingsTexter is broken until further notice.
+
 # LeetCodeRatingsTexter
 
 Tired of repeatedly checking LeetCode to see if your contest rating has updated? Instead text your LeetCode username to **12622281809** and it will notify you the next time your rating is updated. You should receive an initial contest rating within 30 minutes of signing up.
